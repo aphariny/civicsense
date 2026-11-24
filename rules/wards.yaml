@@ -1,0 +1,14 @@
+# Synthetic ward populations, used for the fairness rule.
+ward_population:
+  1: 30000
+  2: 25000
+  3: 20000
+  4: 45000
+  5: 15000
+  6: 22000
+  7: 18000
+  8: 38000
+  9: 12000
+  10: 28000
+  11: 16000
+  12: 21000

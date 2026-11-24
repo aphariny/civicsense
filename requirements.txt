@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+joblib
+pyyaml
+networkx
+pillow
+streamlit
+# For the click-to-pin map, device location and the interactive hotspot map.
+# Optional: without them the apps still work and show simpler alternatives.
+folium
+streamlit-folium
+streamlit-geolocation

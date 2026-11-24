@@ -1,0 +1,14 @@
+# Synthetic maintenance crews. Edit freely.
+# capacity = maximum jobs per shift, shift_min = shift length in minutes.
+crews:
+  - {id: PW-1,  department: "Public Works",          lat: 13.005, lon: 80.205, capacity: 6, shift_min: 480}
+  - {id: PW-2,  department: "Public Works",          lat: 13.030, lon: 80.230, capacity: 6, shift_min: 480}
+  - {id: SAN-1, department: "Sanitation Department", lat: 13.010, lon: 80.225, capacity: 6, shift_min: 480}
+  - {id: SAN-2, department: "Sanitation Department", lat: 13.030, lon: 80.210, capacity: 6, shift_min: 480}
+  - {id: EB-1,  department: "Electricity Board",     lat: 13.015, lon: 80.215, capacity: 6, shift_min: 480}
+  - {id: EB-2,  department: "Electricity Board",     lat: 13.035, lon: 80.235, capacity: 6, shift_min: 480}
+  - {id: WSB-1, department: "Water Supply Board",    lat: 13.000, lon: 80.230, capacity: 6, shift_min: 480}
+  - {id: WSB-2, department: "Water Supply Board",    lat: 13.025, lon: 80.205, capacity: 6, shift_min: 480}
+  - {id: DS-1,  department: "Drainage & Sewerage",   lat: 13.008, lon: 80.215, capacity: 6, shift_min: 480}
+  - {id: DS-2,  department: "Drainage & Sewerage",   lat: 13.032, lon: 80.222, capacity: 6, shift_min: 480}
+  - {id: HD-1,  department: "Health Department",     lat: 13.020, lon: 80.220, capacity: 6, shift_min: 480}

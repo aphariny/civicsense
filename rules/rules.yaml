@@ -1,0 +1,246 @@
+# CivicSense rule base (Module 2).
+# Officials can edit this file without touching any code.
+#
+# Each rule:  id, name, salience (higher fires first), when (conditions), then (actions), why (shown in the trace)
+# Conditions: {fact: <name>, op: eq|ne|gt|gte|lt|lte|in, value: <x>}   or   {any: [..]} / {all: [..]}
+# Actions:    assert: {fact: value}       add a derived fact (other rules can then use it)
+#             set: {department: ...}      only the first rule to set a field wins (highest salience fires first)
+#             min_priority: <level>       raise priority to at least this level (low|medium|high|critical)
+#             raise_priority: <n>         raise priority by n levels (capped at critical)
+#             score_boost: <n>            add to the ordering score used by the scheduler
+#             flag: <text>                note shown to the officer
+
+rules:
+  # ---------- 1. Human in the loop ----------
+  - id: R01
+    name: Low-confidence classification goes to a person
+    salience: 100
+    when:
+      - {fact: needs_review, op: eq, value: true}
+    then:
+      set: {department: "Control Room (manual review)"}
+      flag: "Classifier was not confident: an officer must review this complaint"
+    why: "The AI could not classify this complaint reliably, so a human decides"
+
+  # ---------- 2. Derive facts (forward chaining: later rules use these) ----------
+  - id: R10
+    name: Life-safety hazard detected
+    salience: 95
+    when:
+      - any:
+          - all:
+              - {fact: category, op: eq, value: Electricity}
+              - {fact: hazard_live_electric, op: eq, value: true}
+          - {fact: hazard_open_manhole, op: eq, value: true}
+          - {fact: hazard_structural, op: eq, value: true}
+          - {fact: hazard_medical_waste, op: eq, value: true}
+          - {fact: hazard_contamination, op: eq, value: true}
+    then:
+      assert: {life_safety_risk: true}
+    why: "The text describes a danger to people's safety"
+
+  - id: R11
+    name: Sensitive location (school or hospital)
+    salience: 95
+    when:
+      - any:
+          - {fact: near_school, op: eq, value: true}
+          - {fact: near_hospital, op: eq, value: true}
+    then:
+      assert: {sensitive_location: true}
+    why: "The complaint is near a school or hospital"
+
+  # ---------- 3. Special routing ----------
+  - id: R20
+    name: Medical waste goes to Health Department
+    salience: 80
+    when:
+      - {fact: hazard_medical_waste, op: eq, value: true}
+    then:
+      set: {department: "Health Department"}
+    why: "Medical waste needs trained handling"
+
+  - id: R21
+    name: Contaminated water goes to Water Supply Board
+    salience: 80
+    when:
+      - {fact: hazard_contamination, op: eq, value: true}
+    then:
+      set: {department: "Water Supply Board"}
+      flag: "Notify the Health Department: possible public-health risk"
+    why: "Water contamination with health impact"
+
+  - id: R22
+    name: Open manhole goes to Public Works
+    salience: 80
+    when:
+      - {fact: hazard_open_manhole, op: eq, value: true}
+    then:
+      set: {department: "Public Works"}
+    why: "Open pits and manholes on roads are handled by Public Works"
+
+  # ---------- 4. Priority rules ----------
+  - id: R30
+    name: Life-safety risk near a school or hospital is critical
+    salience: 75
+    when:
+      - {fact: life_safety_risk, op: eq, value: true}
+      - {fact: sensitive_location, op: eq, value: true}
+    then:
+      min_priority: critical
+    why: "Danger to people near a school or hospital"
+
+  - id: R31
+    name: Life-safety risk is at least high
+    salience: 70
+    when:
+      - {fact: life_safety_risk, op: eq, value: true}
+    then:
+      min_priority: high
+    why: "Danger to people's safety"
+
+  - id: R32
+    name: Sensitive location raises routine complaints to high
+    salience: 65
+    when:
+      - {fact: sensitive_location, op: eq, value: true}
+      - {fact: priority_level, op: gte, value: 1}
+    then:
+      min_priority: high
+    why: "Many vulnerable people are affected near a school or hospital"
+
+  - id: R33
+    name: Children at risk
+    salience: 55
+    when:
+      - {fact: child_risk, op: eq, value: true}
+      - {fact: priority_level, op: lt, value: 3}
+    then:
+      raise_priority: 1
+    why: "The complaint mentions children being affected"
+
+  - id: R34
+    name: Many duplicate reports
+    salience: 50
+    when:
+      - {fact: duplicate_count, op: gte, value: 3}
+    then:
+      raise_priority: 1
+      flag: "Reported by many residents (3 or more duplicate reports)"
+    why: "Repeated reports show a widespread community problem"
+
+  - id: R35
+    name: Open for a long time
+    salience: 45
+    when:
+      - {fact: age_days, op: gte, value: 7}
+    then:
+      raise_priority: 1
+      flag: "Open for 7 days or more: escalated"
+    why: "The complaint has waited too long"
+
+  - id: R36
+    name: Recurring problem at the same place
+    salience: 40
+    when:
+      - {fact: repeat_count, op: gte, value: 2}
+    then:
+      score_boost: 5
+      flag: "Recurring problem here: review the quality of the earlier repair"
+    why: "The same place has had repeated complaints"
+
+  - id: R37
+    name: Life-safety risk in a busy public place is critical
+    salience: 74
+    when:
+      - {fact: life_safety_risk, op: eq, value: true}
+      - {fact: near_public_place, op: eq, value: true}
+    then:
+      min_priority: critical
+    why: "Danger to many people in a market, bus stand, station, temple or park"
+
+  - id: R38
+    name: Busy public place raises routine complaints to high
+    salience: 64
+    when:
+      - {fact: near_public_place, op: eq, value: true}
+      - {fact: priority_level, op: gte, value: 1}
+    then:
+      min_priority: high
+    why: "Crowds use this place every day, so more people are affected"
+
+  - id: R41
+    name: Near a school or hospital ranks first among equals
+    salience: 38
+    when:
+      - {fact: sensitive_location, op: eq, value: true}
+    then:
+      score_boost: 15
+    why: "Among complaints of the same priority, those near schools and hospitals are handled first"
+
+  - id: R42
+    name: Near a busy public place ranks above an ordinary street
+    salience: 37
+    when:
+      - {fact: near_public_place, op: eq, value: true}
+    then:
+      score_boost: 8
+    why: "Among complaints of the same priority, those near busy public places come before ordinary streets"
+
+  # ---------- 5. Fairness ----------
+  - id: R39
+    name: Reopened by the citizen
+    salience: 52
+    when:
+      - {fact: reopened_count, op: gte, value: 1}
+    then:
+      raise_priority: 1
+      score_boost: 10
+      flag: "Reopened: the citizen says the problem was not fixed"
+    why: "A repair that did not hold needs a closer look"
+
+  - id: R40
+    name: Under-reporting ward gets a fairness boost
+    salience: 30
+    when:
+      - {fact: ward_reporting_ratio, op: lte, value: 0.7}
+    then:
+      score_boost: 5
+      flag: "Ward reports less than its population share: score boosted for fairness"
+    why: "Areas that complain less should not be served less"
+
+  # ---------- 6. Default routing by category (lowest salience) ----------
+  - id: R90
+    name: Road complaints go to Public Works
+    salience: 10
+    when: [{fact: category, op: eq, value: Road}]
+    then: {set: {department: "Public Works"}}
+    why: "Roads are maintained by Public Works"
+
+  - id: R91
+    name: Sanitation complaints go to Sanitation Department
+    salience: 10
+    when: [{fact: category, op: eq, value: Sanitation}]
+    then: {set: {department: "Sanitation Department"}}
+    why: "Garbage and cleanliness are handled by the Sanitation Department"
+
+  - id: R92
+    name: Electricity complaints go to Electricity Board
+    salience: 10
+    when: [{fact: category, op: eq, value: Electricity}]
+    then: {set: {department: "Electricity Board"}}
+    why: "Streetlights and power lines belong to the Electricity Board"
+
+  - id: R93
+    name: Water complaints go to Water Supply Board
+    salience: 10
+    when: [{fact: category, op: eq, value: "Water Supply"}]
+    then: {set: {department: "Water Supply Board"}}
+    why: "Water supply and pipes belong to the Water Supply Board"
+
+  - id: R94
+    name: Drainage complaints go to Drainage & Sewerage
+    salience: 10
+    when: [{fact: category, op: eq, value: Drainage}]
+    then: {set: {department: "Drainage & Sewerage"}}
+    why: "Drains and sewage belong to Drainage & Sewerage"

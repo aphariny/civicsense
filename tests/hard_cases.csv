@@ -1,0 +1,92 @@
+text,category,priority,vague
+"Big hole in the road outside St. Mary's school, buses are swerving",Road,high,0
+"The light on our lane has been off for a week, women are scared to walk at night",Electricity,high,0
+"Garbage heaped up near the clinic, stinks badly and dogs are tearing it",Sanitation,medium,0
+"wire fell from the pole in front of my house, sparks coming",Electricity,critical,0
+"no water in tap since 2 days",Water Supply,high,0
+"Drain is chocked and water is entering shops",Drainage,high,0
+"Open pit dug by cable people not covered, risky for kids",Road,critical,0
+"Rubbish not picked up on Tuesday",Sanitation,low,0
+"water coming brown from taps, children have stomach pain",Water Supply,critical,0
+"Sewer pipe burst, dirty water flowing on the road near the hospital",Drainage,critical,0
+"Footpath tiles broken in front of the library",Road,low,0
+"Transformer making loud noise and smoke coming out",Electricity,critical,0
+"Streetlamps flicker every evening on our road",Electricity,low,0
+"Water stagnant for weeks, mosquito menace in our block",Drainage,medium,0
+"Pipeline leaking water all over the lane, wasting lots of water",Water Supply,medium,0
+"Tree branch fell on electric line near the park",Electricity,critical,0
+"Dead dog on the road near the school gate since morning",Sanitation,high,0
+"Speed breaker is too high, cars scraping",Road,low,0
+"Tap la thanni varala since morning",Water Supply,high,0
+"Street light eriyala, romba iruttu",Electricity,medium,0
+"Road la periya kuzhi irukku near school",Road,high,0
+"Kuppai edukkala 1 week ah",Sanitation,medium,0
+"Pls fix it",,,1
+"Problem in our area, please send someone",,,1
+"Very bad situation here nobody cares",,,1
+"There is a huge crater on the main road near Velachery bus stop, bikes are skidding",Road,high,0
+"road got washed away after yesterdays rain, cant even walk",Road,high,0
+Small crack developing on the tar road in front of my house,Road,low,0
+pothole near the signal making traffic slow,Road,medium,0
+Footpath slab missing and people are walking on the road,Road,medium,0
+"Speed breaker has no paint, accidents at night",Road,medium,0
+Road dug up by telecom company and left open for 3 weeks,Road,high,0
+"manhole cover broken on the road, two wheelers falling in",Road,critical,0
+"Rd damaged badly near hospital entrance, ambulance finds it hard to cross",Road,high,0
+"Tar road peeling off, loose stones everywhere",Road,medium,0
+Sinkhole opened up in the middle of the road,Road,critical,0
+Zebra crossing paint faded near the school,Road,medium,0
+"Gravel and sand dumped on the road by builder, scooters slipping",Road,medium,0
+"Garbage truck did not come this week, bins overflowing",Sanitation,medium,0
+Dead rat smell near the park,Sanitation,low,0
+"Someone is burning plastic waste behind our apartment, smoke everywhere",Sanitation,high,0
+public toilet near bus stand is filthy and no water,Sanitation,medium,0
+"Hospital waste thrown on the roadside, syringes visible",Sanitation,critical,0
+Stray dogs tearing garbage bags every morning,Sanitation,low,0
+"Open dumping on the empty plot, mosquito breeding",Sanitation,medium,0
+Street sweeping not done in our lane for a month,Sanitation,low,0
+Cow dung and garbage blocking the entrance of the school,Sanitation,high,0
+"Dead dog on the road since yesterday, very bad smell",Sanitation,high,0
+Garbage bin on fire near the petrol bunk,Sanitation,critical,0
+"street light not working in our street since 10 days, chain snatching happening",Electricity,high,0
+Transformer humming loudly and sparks coming out at night,Electricity,critical,0
+Voltage fluctuation in our area damaging appliances,Electricity,medium,0
+electric pole leaning dangerously towards the house,Electricity,high,0
+"Wires hanging very low across the road, a bus nearly touched them",Electricity,critical,0
+Power cut every evening for the last week,Electricity,high,0
+light on the main road flickers a bit,Electricity,low,0
+Meter box open with wires exposed outside the shop,Electricity,critical,0
+"Street light on all day, wasting power",Electricity,low,0
+"tree fell on the electric wire during storm, sparks",Electricity,critical,0
+"No water in the taps for 3 days, we have old people at home",Water Supply,high,0
+"water supply timing keeps changing, getting only 20 minutes",Water Supply,medium,0
+Muddy smelly water is coming in the tap,Water Supply,high,0
+"Main pipe burst near the junction, road flooded with clean water",Water Supply,high,0
+Leaking public tap wasting water,Water Supply,low,0
+Many people in our street have diarrhoea after drinking tap water,Water Supply,critical,0
+tanker water not delivered despite booking,Water Supply,medium,0
+Low pressure on the second floor,Water Supply,low,0
+water coming only at night 2am,Water Supply,medium,0
+"borewell motor of the colony stopped, no water",Water Supply,high,0
+"drain overflowing on the road, sewage entering houses",Drainage,high,0
+"Storm water drain blocked by plastic, water stagnates after every rain",Drainage,medium,0
+"Open drain without cover next to the school gate, kids walk there",Drainage,critical,0
+"sewer line chocked, black water coming out of the manhole",Drainage,high,0
+Mosquito breeding in the stagnant drain water behind the market,Drainage,medium,0
+"Waterlogging in the subway every time it rains, vehicles stuck",Drainage,high,0
+Drain cleaning done but silt left on the roadside,Drainage,low,0
+"Sewage mixing with drinking water pipeline, people falling sick",Drainage,critical,0
+small drain choke near our gate,Drainage,low,0
+Manhole overflowing near the hospital,Drainage,critical,0
+"Kuzhi romba periya irukku road la, bike ottura aalunga vizhuraanga",Road,high,0
+"Street light eriyala 1 week ah, irutla payama irukku",Electricity,high,0
+"Kuppai lorry varave illa, nariya naal aachu",Sanitation,medium,0
+"Thanni varala 2 naal ah, enna pannuradhu",Water Supply,high,0
+"Drainage adaichiduchu, ketta vaasanai varudhu",Drainage,medium,0
+"Current pole saanjirukku, bayama iruku",Electricity,high,0
+something is wrong here,,,1
+please help,,,1
+problem near my house,,,1
+complaint,,,1
+no one is coming,,,1
+very bad,,,1

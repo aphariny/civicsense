@@ -1,0 +1,26 @@
+# Schools, hospitals and busy public places of the (fictional) demo city. Replace with your real places.
+# type: school | hospital | market | bus_stand | railway_station | temple | park
+# A complaint within 150 metres of a place counts as "near" it (see modules/places.py).
+places:
+  - {name: "Government High School",    type: school,          lat: 13.0030, lon: 80.2030}
+  - {name: "Lake View School",          type: school,          lat: 13.0140, lon: 80.2260}
+  - {name: "St. Joseph Primary School", type: school,          lat: 13.0260, lon: 80.2140}
+  - {name: "Anna Nagar Public School",  type: school,          lat: 13.0110, lon: 80.2370}
+  - {name: "City General Hospital",     type: hospital,        lat: 13.0010, lon: 80.2140}
+  - {name: "Community Health Centre",   type: hospital,        lat: 13.0250, lon: 80.2380}
+  - {name: "Sunrise Hospital",          type: hospital,        lat: 13.0130, lon: 80.2050}
+  - {name: "Central Market",            type: market,          lat: 13.0060, lon: 80.2110}
+  - {name: "Weekly Bazaar",             type: market,          lat: 13.0180, lon: 80.2310}
+  - {name: "Fish Market",               type: market,          lat: 13.0270, lon: 80.2050}
+  - {name: "Vegetable Market",          type: market,          lat: 13.0130, lon: 80.2200}
+  - {name: "Main Bus Stand",            type: bus_stand,       lat: 13.0090, lon: 80.2220}
+  - {name: "Station Road Bus Stop",     type: bus_stand,       lat: 13.0220, lon: 80.2130}
+  - {name: "North Bus Terminus",        type: bus_stand,       lat: 13.0300, lon: 80.2290}
+  - {name: "City Railway Station",      type: railway_station, lat: 13.0210, lon: 80.2220}
+  - {name: "Junction Railway Station",  type: railway_station, lat: 13.0040, lon: 80.2330}
+  - {name: "Lakeside Temple",           type: temple,          lat: 13.0080, lon: 80.2020}
+  - {name: "Old Town Temple",           type: temple,          lat: 13.0190, lon: 80.2070}
+  - {name: "Hill Temple",               type: temple,          lat: 13.0280, lon: 80.2360}
+  - {name: "Gandhi Park",               type: park,            lat: 13.0150, lon: 80.2130}
+  - {name: "Lake Park",                 type: park,            lat: 13.0020, lon: 80.2260}
+  - {name: "Children's Park",           type: park,            lat: 13.0240, lon: 80.2260}
